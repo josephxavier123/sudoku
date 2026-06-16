@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>SudokuX — Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page-home">
+    <!-- NAV -->
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo"
+        ><span class="accent">S</span>udoku<span class="accent">X</span></a
+      >
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="game.html" class="nav-link">Play</a>
+        <a href="stats.html" class="nav-link">Stats</a>
+        <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+          ☀️
+        </button>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          ☰
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mob-link active">Home</a>
+      <a href="game.html" class="mob-link">Play</a>
+      <a href="stats.html" class="mob-link">Stats</a>
+      <a href="leaderboard.html" class="mob-link">Leaderboard</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg-grid" aria-hidden="true" id="heroBgGrid"></div>
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Logic · Pattern · Precision</p>
+        <h1 class="hero-title">Master<br /><em>Every Cell</em></h1>
+        <p class="hero-sub">
+          Four difficulty levels, daily challenges, hints, notes mode, and a
+          leaderboard to climb. Pure logic — no luck.
+        </p>
+
+        <!-- Difficulty -->
+        <div class="diff-group">
+          <p class="diff-label">Choose difficulty</p>
+          <div
+            class="diff-pills"
+            id="homeDiffPicker"
+            role="radiogroup"
+            aria-label="Difficulty"
+          >
+            <button
+              class="pill"
+              data-diff="easy"
+              role="radio"
+              aria-checked="false"
+            >
+              Easy
+            </button>
+            <button
+              class="pill active"
+              data-diff="medium"
+              role="radio"
+              aria-checked="true"
+            >
+              Medium
+            </button>
+            <button
+              class="pill"
+              data-diff="hard"
+              role="radio"
+              aria-checked="false"
+            >
+              Hard
+            </button>
+            <button
+              class="pill"
+              data-diff="expert"
+              role="radio"
+              aria-checked="false"
+            >
+              Expert
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="game.html" class="btn-primary" id="playNowBtn">Play Now</a>
+          <a href="game.html" class="btn-ghost" id="dailyBtn"
+            >Daily Challenge</a
+          >
+        </div>
+      </div>
+
+      <!-- Animated preview grid -->
+      <div class="hero-preview" aria-hidden="true">
+        <div class="preview-grid" id="previewGrid"></div>
+      </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <section class="stats-strip">
+      <div class="stat-chip">
+        <span class="stat-val" id="hpPlayed">0</span
+        ><span class="stat-lbl">Games Played</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-val" id="hpWon">0</span
+        ><span class="stat-lbl">Games Won</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-val" id="hpWinPct">0%</span
+        ><span class="stat-lbl">Win Rate</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-val" id="hpBest">--:--</span
+        ><span class="stat-lbl">Best Time</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-val" id="hpStreak">0</span
+        ><span class="stat-lbl">Win Streak</span>
+      </div>
+    </section>
+
+    <!-- HOW TO PLAY -->
+    <section class="how-section">
+      <h2 class="section-title">How to Play</h2>
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-icon">🎯</div>
+          <h3>Fill the Grid</h3>
+          <p>
+            Place digits 1–9 so every row, column, and 3×3 box contains each
+            number exactly once.
+          </p>
+        </div>
+        <div class="how-card">
+          <div class="how-icon">✏️</div>
+          <h3>Use Notes</h3>
+          <p>
+            Toggle Notes Mode to pencil in candidate numbers in any cell — great
+            for tricky spots.
+          </p>
+        </div>
+        <div class="how-card">
+          <div class="how-icon">💡</div>
+          <h3>Get Hints</h3>
+          <p>
+            Stuck? Use one of your 3 hints to reveal the correct value in any
+            empty cell.
+          </p>
+        </div>
+        <div class="how-card">
+          <div class="how-icon">⏱️</div>
+          <h3>Beat Your Time</h3>
+          <p>
+            Finish fast with few mistakes for the highest score. Your best times
+            go on the leaderboard.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <span class="nav-logo"
+        ><span class="accent">S</span>udoku<span class="accent">X</span></span
+      >
+      <p>Pure logic. No luck.</p>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="game.html">Play</a>
+        <a href="stats.html">Stats</a>
+        <a href="leaderboard.html">Leaderboard</a>
+      </nav>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    <script src="shared.js"></script>
+    <script>
+      // Build decorative background grid
+      const bgGrid = document.getElementById("heroBgGrid");
+      for (let i = 0; i < 81; i++) {
+        const c = document.createElement("div");
+        c.className = "bg-cell";
+        c.style.animationDelay = (Math.random() * 4).toFixed(2) + "s";
+        bgGrid.appendChild(c);
+      }
+
+      // Build preview grid with sample numbers
+      const sample = [
+        5, 3, 0, 0, 7, 0, 0, 0, 0, 6, 0, 0, 1, 9, 5, 0, 0, 0, 0, 9, 8, 0, 0, 0,
+        0, 6, 0, 8, 0, 0, 0, 6, 0, 0, 0, 3, 4, 0, 0, 8, 0, 3, 0, 0, 1, 7, 0, 0,
+        0, 2, 0, 0, 0, 6, 0, 6, 0, 0, 0, 0, 2, 8, 0, 0, 0, 0, 4, 1, 9, 0, 0, 5,
+        0, 0, 0, 0, 8, 0, 0, 7, 9,
+      ];
+      const previewGrid = document.getElementById("previewGrid");
+      sample.forEach((v, i) => {
+        const c = document.createElement("div");
+        c.className = "prev-cell" + (v ? " filled" : "");
+        const row = Math.floor(i / 9),
+          col = i % 9;
+        if ((col + 1) % 3 === 0 && col < 8) c.classList.add("br");
+        if ((row + 1) % 3 === 0 && row < 8) c.classList.add("bb");
+        c.textContent = v || "";
+        previewGrid.appendChild(c);
+      });
+
+      // Difficulty picker
+      document.querySelectorAll("#homeDiffPicker .pill").forEach((p) => {
+        p.addEventListener("click", () => {
+          document.querySelectorAll("#homeDiffPicker .pill").forEach((x) => {
+            x.classList.remove("active");
+            x.setAttribute("aria-checked", "false");
+          });
+          p.classList.add("active");
+          p.setAttribute("aria-checked", "true");
+          sessionStorage.setItem("sx_diff", p.dataset.diff);
+        });
+      });
+
+      // Restore saved diff
+      const savedDiff = sessionStorage.getItem("sx_diff") || "medium";
+      document.querySelectorAll("#homeDiffPicker .pill").forEach((p) => {
+        p.classList.toggle("active", p.dataset.diff === savedDiff);
+        p.setAttribute(
+          "aria-checked",
+          p.dataset.diff === savedDiff ? "true" : "false",
+        );
+      });
+
+      // Daily btn sets flag
+      document.getElementById("dailyBtn").addEventListener("click", () => {
+        sessionStorage.setItem("sx_daily", "1");
+      });
+      document.getElementById("playNowBtn").addEventListener("click", () => {
+        sessionStorage.removeItem("sx_daily");
+      });
+
+      // Homepage stats
+      const st = loadStats();
+      document.getElementById("hpPlayed").textContent = st.played;
+      document.getElementById("hpWon").textContent = st.won;
+      document.getElementById("hpWinPct").textContent = st.played
+        ? Math.round((st.won / st.played) * 100) + "%"
+        : "0%";
+      document.getElementById("hpBest").textContent =
+        st.bestTime != null ? formatTime(st.bestTime) : "--:--";
+      document.getElementById("hpStreak").textContent = st.streak || 0;
+    </script>
+  </body>
+</html>
