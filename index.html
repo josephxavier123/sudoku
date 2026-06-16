@@ -2,262 +2,423 @@
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>SudokuX — Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SudokuX — Master the Grid</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="page-home">
-    <!-- NAV -->
-    <nav class="navbar">
-      <a href="index.html" class="nav-logo"
-        ><span class="accent">S</span>udoku<span class="accent">X</span></a
-      >
-      <div class="nav-links">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="game.html" class="nav-link">Play</a>
-        <a href="stats.html" class="nav-link">Stats</a>
-        <a href="leaderboard.html" class="nav-link">Leaderboard</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
-          ☀️
-        </button>
-        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-          ☰
-        </button>
-      </div>
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html" class="mob-link active">Home</a>
-      <a href="game.html" class="mob-link">Play</a>
-      <a href="stats.html" class="mob-link">Stats</a>
-      <a href="leaderboard.html" class="mob-link">Leaderboard</a>
-    </div>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg-grid" aria-hidden="true" id="heroBgGrid"></div>
-      <div class="hero-inner">
-        <p class="hero-eyebrow">Logic · Pattern · Precision</p>
-        <h1 class="hero-title">Master<br /><em>Every Cell</em></h1>
-        <p class="hero-sub">
-          Four difficulty levels, daily challenges, hints, notes mode, and a
-          leaderboard to climb. Pure logic — no luck.
-        </p>
-
-        <!-- Difficulty -->
-        <div class="diff-group">
-          <p class="diff-label">Choose difficulty</p>
-          <div
-            class="diff-pills"
-            id="homeDiffPicker"
-            role="radiogroup"
-            aria-label="Difficulty"
+  <body>
+    <!-- ========== HOMEPAGE ========== -->
+    <section id="homepage" class="page active">
+      <header class="top-bar">
+        <div class="logo">
+          <span class="logo-x">S</span>udoku<span class="logo-x">X</span>
+        </div>
+        <div class="top-actions">
+          <button
+            id="themeToggle"
+            class="icon-btn"
+            aria-label="Toggle theme"
+            title="Toggle theme"
           >
-            <button
-              class="pill"
-              data-diff="easy"
-              role="radio"
-              aria-checked="false"
+            ☀️
+          </button>
+          <button
+            id="statsBtn"
+            class="icon-btn"
+            aria-label="Stats"
+            title="Statistics"
+          >
+            📊
+          </button>
+          <button
+            id="leaderboardBtn"
+            class="icon-btn"
+            aria-label="Leaderboard"
+            title="Leaderboard"
+          >
+            🏆
+          </button>
+        </div>
+      </header>
+
+      <div class="hero">
+        <div class="hero-grid-bg" aria-hidden="true">
+          <div class="mini-grid" id="decorGrid"></div>
+        </div>
+        <div class="hero-content">
+          <p class="hero-eyebrow">The grid awaits</p>
+          <h1 class="hero-title">Master<br /><em>Every Cell</em></h1>
+          <p class="hero-sub">
+            Logic. Pattern. Precision. Four difficulty levels, daily challenges,
+            and a local leaderboard to climb.
+          </p>
+          <div class="difficulty-select">
+            <label class="sr-only" for="difficultyPicker"
+              >Choose difficulty</label
             >
-              Easy
-            </button>
-            <button
-              class="pill active"
-              data-diff="medium"
-              role="radio"
-              aria-checked="true"
+            <div
+              class="diff-pills"
+              id="difficultyPicker"
+              role="radiogroup"
+              aria-label="Difficulty"
             >
-              Medium
-            </button>
-            <button
-              class="pill"
-              data-diff="hard"
-              role="radio"
-              aria-checked="false"
-            >
-              Hard
-            </button>
-            <button
-              class="pill"
-              data-diff="expert"
-              role="radio"
-              aria-checked="false"
-            >
-              Expert
-            </button>
+              <button
+                class="diff-pill"
+                data-diff="easy"
+                role="radio"
+                aria-checked="false"
+              >
+                Easy
+              </button>
+              <button
+                class="diff-pill active"
+                data-diff="medium"
+                role="radio"
+                aria-checked="true"
+              >
+                Medium
+              </button>
+              <button
+                class="diff-pill"
+                data-diff="hard"
+                role="radio"
+                aria-checked="false"
+              >
+                Hard
+              </button>
+              <button
+                class="diff-pill"
+                data-diff="expert"
+                role="radio"
+                aria-checked="false"
+              >
+                Expert
+              </button>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <button id="playNowBtn" class="btn-primary">Play Now</button>
+            <button id="dailyBtn" class="btn-ghost">Daily Challenge</button>
           </div>
         </div>
+      </div>
 
-        <div class="hero-cta">
-          <a href="game.html" class="btn-primary" id="playNowBtn">Play Now</a>
-          <a href="game.html" class="btn-ghost" id="dailyBtn"
-            >Daily Challenge</a
+      <!-- Stats strip -->
+      <div class="stats-strip">
+        <div class="stat-chip">
+          <span class="stat-val" id="hpPlayed">0</span
+          ><span class="stat-lbl">Played</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-val" id="hpWon">0</span
+          ><span class="stat-lbl">Won</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-val" id="hpWinPct">0%</span
+          ><span class="stat-lbl">Win %</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-val" id="hpBest">--:--</span
+          ><span class="stat-lbl">Best Time</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== GAME PAGE ========== -->
+    <section id="gamepage" class="page">
+      <header class="game-header">
+        <button
+          id="backBtn"
+          class="icon-btn"
+          aria-label="Back to home"
+          title="Home"
+        >
+          ← Home
+        </button>
+        <div class="logo small"><span class="logo-x">S</span>X</div>
+        <div class="top-actions">
+          <button id="themeToggle2" class="icon-btn" aria-label="Toggle theme">
+            ☀️
+          </button>
+        </div>
+      </header>
+
+      <div class="game-layout">
+        <!-- Left / top panel -->
+        <aside class="game-sidebar left-panel">
+          <div class="card info-card">
+            <div class="timer-block">
+              <span class="timer-label">Time</span>
+              <span class="timer-display" id="timerDisplay">00:00</span>
+              <div class="timer-controls">
+                <button class="tiny-btn" id="pauseBtn" title="Pause">⏸</button>
+                <button class="tiny-btn" id="resetTimerBtn" title="Reset timer">
+                  ↺
+                </button>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="mini-stats">
+              <div class="mini-stat">
+                <span id="mistakeCount">0</span><small>Mistakes</small>
+              </div>
+              <div class="mini-stat">
+                <span id="scoreDisplay">0</span><small>Score</small>
+              </div>
+              <div class="mini-stat">
+                <span id="hintCount">3</span><small>Hints</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="card diff-card">
+            <p class="card-label">Difficulty</p>
+            <p class="diff-badge" id="currentDiff">Medium</p>
+            <div class="diff-pills small" id="gameDiffPicker" role="radiogroup">
+              <button class="diff-pill" data-diff="easy">Easy</button>
+              <button class="diff-pill active" data-diff="medium">
+                Medium
+              </button>
+              <button class="diff-pill" data-diff="hard">Hard</button>
+              <button class="diff-pill" data-diff="expert">Expert</button>
+            </div>
+          </div>
+
+          <div class="card actions-card">
+            <p class="card-label">Game</p>
+            <button class="action-btn" id="newGameBtn">🎲 New Game</button>
+            <button class="action-btn" id="resetGameBtn">↺ Reset</button>
+            <button class="action-btn accent" id="solveBtn">
+              ⚡ Auto Solve
+            </button>
+          </div>
+        </aside>
+
+        <!-- Board -->
+        <main class="board-area">
+          <div class="board-wrapper">
+            <div
+              id="sudokuBoard"
+              class="sudoku-board"
+              role="grid"
+              aria-label="Sudoku grid"
+            ></div>
+          </div>
+
+          <!-- Number pad -->
+          <div
+            class="numpad"
+            id="numpad"
+            role="group"
+            aria-label="Number input"
           >
-        </div>
-      </div>
+            <button class="num-key" data-num="1">1</button>
+            <button class="num-key" data-num="2">2</button>
+            <button class="num-key" data-num="3">3</button>
+            <button class="num-key" data-num="4">4</button>
+            <button class="num-key" data-num="5">5</button>
+            <button class="num-key" data-num="6">6</button>
+            <button class="num-key" data-num="7">7</button>
+            <button class="num-key" data-num="8">8</button>
+            <button class="num-key" data-num="9">9</button>
+            <button class="num-key erase-btn" data-num="0" title="Erase">
+              ✕
+            </button>
+          </div>
 
-      <!-- Animated preview grid -->
-      <div class="hero-preview" aria-hidden="true">
-        <div class="preview-grid" id="previewGrid"></div>
+          <!-- Tool bar -->
+          <div class="tool-bar">
+            <button class="tool-btn" id="undoBtn" title="Undo">↩ Undo</button>
+            <button class="tool-btn" id="redoBtn" title="Redo">↪ Redo</button>
+            <button class="tool-btn" id="hintBtn" title="Hint">💡 Hint</button>
+            <button
+              class="tool-btn toggle-btn"
+              id="notesModeBtn"
+              title="Notes mode"
+            >
+              ✏ Notes
+            </button>
+            <button class="tool-btn" id="checkBtn" title="Check solution">
+              ✔ Check
+            </button>
+          </div>
+        </main>
+
+        <!-- Right panel -->
+        <aside class="game-sidebar right-panel">
+          <div class="card progress-card">
+            <p class="card-label">Progress</p>
+            <div class="progress-ring-wrap">
+              <svg
+                class="progress-ring"
+                width="80"
+                height="80"
+                viewBox="0 0 80 80"
+              >
+                <circle cx="40" cy="40" r="32" class="ring-bg" />
+                <circle
+                  cx="40"
+                  cy="40"
+                  r="32"
+                  class="ring-fill"
+                  id="progressRing"
+                />
+              </svg>
+              <span class="progress-pct" id="progressPct">0%</span>
+            </div>
+            <p class="progress-sub" id="progressSub">0 / 81 cells</p>
+          </div>
+
+          <div class="card notes-legend card-collapse" id="notesLegend">
+            <p class="card-label">Notes Mode</p>
+            <p class="notes-hint">
+              Tap a cell, then tap numbers to pencil in candidates.
+            </p>
+            <p class="notes-active-badge" id="notesActiveBadge">OFF</p>
+          </div>
+
+          <div class="card leaderboard-mini">
+            <p class="card-label">Top Times</p>
+            <ol class="mini-lb" id="miniLeaderboard"></ol>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <!-- STATS STRIP -->
-    <section class="stats-strip">
-      <div class="stat-chip">
-        <span class="stat-val" id="hpPlayed">0</span
-        ><span class="stat-lbl">Games Played</span>
-      </div>
-      <div class="stat-chip">
-        <span class="stat-val" id="hpWon">0</span
-        ><span class="stat-lbl">Games Won</span>
-      </div>
-      <div class="stat-chip">
-        <span class="stat-val" id="hpWinPct">0%</span
-        ><span class="stat-lbl">Win Rate</span>
-      </div>
-      <div class="stat-chip">
-        <span class="stat-val" id="hpBest">--:--</span
-        ><span class="stat-lbl">Best Time</span>
-      </div>
-      <div class="stat-chip">
-        <span class="stat-val" id="hpStreak">0</span
-        ><span class="stat-lbl">Win Streak</span>
-      </div>
-    </section>
+    <!-- ========== MODALS ========== -->
 
-    <!-- HOW TO PLAY -->
-    <section class="how-section">
-      <h2 class="section-title">How to Play</h2>
-      <div class="how-grid">
-        <div class="how-card">
-          <div class="how-icon">🎯</div>
-          <h3>Fill the Grid</h3>
-          <p>
-            Place digits 1–9 so every row, column, and 3×3 box contains each
-            number exactly once.
-          </p>
+    <!-- Stats Modal -->
+    <div
+      class="modal-overlay"
+      id="statsModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Statistics"
+      hidden
+    >
+      <div class="modal-box">
+        <button class="modal-close" data-close="statsModal" aria-label="Close">
+          ✕
+        </button>
+        <h2 class="modal-title">Your Statistics</h2>
+        <div class="stats-grid">
+          <div class="stat-block">
+            <span id="stPlayed">0</span><small>Games Played</small>
+          </div>
+          <div class="stat-block">
+            <span id="stWon">0</span><small>Games Won</small>
+          </div>
+          <div class="stat-block">
+            <span id="stWinPct">0%</span><small>Win Rate</small>
+          </div>
+          <div class="stat-block">
+            <span id="stBest">--:--</span><small>Best Time</small>
+          </div>
+          <div class="stat-block">
+            <span id="stStreak">0</span><small>Win Streak</small>
+          </div>
+          <div class="stat-block">
+            <span id="stAvgScore">0</span><small>Avg Score</small>
+          </div>
         </div>
-        <div class="how-card">
-          <div class="how-icon">✏️</div>
-          <h3>Use Notes</h3>
-          <p>
-            Toggle Notes Mode to pencil in candidate numbers in any cell — great
-            for tricky spots.
-          </p>
-        </div>
-        <div class="how-card">
-          <div class="how-icon">💡</div>
-          <h3>Get Hints</h3>
-          <p>
-            Stuck? Use one of your 3 hints to reveal the correct value in any
-            empty cell.
-          </p>
-        </div>
-        <div class="how-card">
-          <div class="how-icon">⏱️</div>
-          <h3>Beat Your Time</h3>
-          <p>
-            Finish fast with few mistakes for the highest score. Your best times
-            go on the leaderboard.
-          </p>
+        <div class="stats-by-diff">
+          <p class="card-label" style="margin-top: 1rem">By Difficulty</p>
+          <table class="diff-table">
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Played</th>
+                <th>Won</th>
+                <th>Best</th>
+              </tr>
+            </thead>
+            <tbody id="diffTableBody"></tbody>
+          </table>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <span class="nav-logo"
-        ><span class="accent">S</span>udoku<span class="accent">X</span></span
-      >
-      <p>Pure logic. No luck.</p>
-      <nav class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="game.html">Play</a>
-        <a href="stats.html">Stats</a>
-        <a href="leaderboard.html">Leaderboard</a>
-      </nav>
-    </footer>
+    <!-- Leaderboard Modal -->
+    <div
+      class="modal-overlay"
+      id="leaderboardModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Leaderboard"
+      hidden
+    >
+      <div class="modal-box">
+        <button
+          class="modal-close"
+          data-close="leaderboardModal"
+          aria-label="Close"
+        >
+          ✕
+        </button>
+        <h2 class="modal-title">🏆 Leaderboard</h2>
+        <div class="lb-filter">
+          <button class="diff-pill active" data-lb-diff="all">All</button>
+          <button class="diff-pill" data-lb-diff="easy">Easy</button>
+          <button class="diff-pill" data-lb-diff="medium">Medium</button>
+          <button class="diff-pill" data-lb-diff="hard">Hard</button>
+          <button class="diff-pill" data-lb-diff="expert">Expert</button>
+        </div>
+        <table class="lb-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Score</th>
+              <th>Time</th>
+              <th>Difficulty</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardBody"></tbody>
+        </table>
+      </div>
+    </div>
 
-    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
-    <script src="shared.js"></script>
-    <script>
-      // Build decorative background grid
-      const bgGrid = document.getElementById("heroBgGrid");
-      for (let i = 0; i < 81; i++) {
-        const c = document.createElement("div");
-        c.className = "bg-cell";
-        c.style.animationDelay = (Math.random() * 4).toFixed(2) + "s";
-        bgGrid.appendChild(c);
-      }
+    <!-- Win Modal -->
+    <div
+      class="modal-overlay"
+      id="winModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Puzzle solved!"
+      hidden
+    >
+      <div class="modal-box win-box">
+        <div class="win-emoji">🎉</div>
+        <h2 class="win-title">Puzzle Solved!</h2>
+        <div class="win-stats">
+          <div class="win-stat">
+            <span id="winTime">00:00</span><small>Time</small>
+          </div>
+          <div class="win-stat">
+            <span id="winMistakes">0</span><small>Mistakes</small>
+          </div>
+          <div class="win-stat">
+            <span id="winScore">0</span><small>Score</small>
+          </div>
+        </div>
+        <div class="win-actions">
+          <button class="btn-primary" id="winNewGame">New Game</button>
+          <button class="btn-ghost" id="winHome">Home</button>
+        </div>
+      </div>
+    </div>
 
-      // Build preview grid with sample numbers
-      const sample = [
-        5, 3, 0, 0, 7, 0, 0, 0, 0, 6, 0, 0, 1, 9, 5, 0, 0, 0, 0, 9, 8, 0, 0, 0,
-        0, 6, 0, 8, 0, 0, 0, 6, 0, 0, 0, 3, 4, 0, 0, 8, 0, 3, 0, 0, 1, 7, 0, 0,
-        0, 2, 0, 0, 0, 6, 0, 6, 0, 0, 0, 0, 2, 8, 0, 0, 0, 0, 4, 1, 9, 0, 0, 5,
-        0, 0, 0, 0, 8, 0, 0, 7, 9,
-      ];
-      const previewGrid = document.getElementById("previewGrid");
-      sample.forEach((v, i) => {
-        const c = document.createElement("div");
-        c.className = "prev-cell" + (v ? " filled" : "");
-        const row = Math.floor(i / 9),
-          col = i % 9;
-        if ((col + 1) % 3 === 0 && col < 8) c.classList.add("br");
-        if ((row + 1) % 3 === 0 && row < 8) c.classList.add("bb");
-        c.textContent = v || "";
-        previewGrid.appendChild(c);
-      });
+    <!-- Confetti canvas -->
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
-      // Difficulty picker
-      document.querySelectorAll("#homeDiffPicker .pill").forEach((p) => {
-        p.addEventListener("click", () => {
-          document.querySelectorAll("#homeDiffPicker .pill").forEach((x) => {
-            x.classList.remove("active");
-            x.setAttribute("aria-checked", "false");
-          });
-          p.classList.add("active");
-          p.setAttribute("aria-checked", "true");
-          sessionStorage.setItem("sx_diff", p.dataset.diff);
-        });
-      });
+    <!-- Toast -->
+    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
-      // Restore saved diff
-      const savedDiff = sessionStorage.getItem("sx_diff") || "medium";
-      document.querySelectorAll("#homeDiffPicker .pill").forEach((p) => {
-        p.classList.toggle("active", p.dataset.diff === savedDiff);
-        p.setAttribute(
-          "aria-checked",
-          p.dataset.diff === savedDiff ? "true" : "false",
-        );
-      });
-
-      // Daily btn sets flag
-      document.getElementById("dailyBtn").addEventListener("click", () => {
-        sessionStorage.setItem("sx_daily", "1");
-      });
-      document.getElementById("playNowBtn").addEventListener("click", () => {
-        sessionStorage.removeItem("sx_daily");
-      });
-
-      // Homepage stats
-      const st = loadStats();
-      document.getElementById("hpPlayed").textContent = st.played;
-      document.getElementById("hpWon").textContent = st.won;
-      document.getElementById("hpWinPct").textContent = st.played
-        ? Math.round((st.won / st.played) * 100) + "%"
-        : "0%";
-      document.getElementById("hpBest").textContent =
-        st.bestTime != null ? formatTime(st.bestTime) : "--:--";
-      document.getElementById("hpStreak").textContent = st.streak || 0;
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
